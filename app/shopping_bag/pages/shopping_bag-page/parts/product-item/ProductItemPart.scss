@@ -1,0 +1,35 @@
+@import "../../../../../app/pages/app/variables";
+@import "../../../../../app/pages/app/mixins";
+
+.product-item-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 277px;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  &:hover {
+    outline: 1px dashed $grey-color-dark;
+    transition: 0.3s ease;
+  }
+
+  &:active {
+    opacity: 0.5;
+    transition: 0.3s ease;
+  }
+}
+
+.product-item-description,
+.product-item-price {
+  max-width: 100%;
+  margin: 5px 0 7px;
+  font-size: $font-size-any-small;
+  line-height: $line-height-medium;
+  font-weight: $font-weight-regular;
+}
+
+.product-item-price {
+  margin: 0;
+}

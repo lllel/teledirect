@@ -1,0 +1,132 @@
+@import "../../../../../app/pages/app/variables";
+@import "../../../../../app/pages/app/mixins";
+
+.shopping-bag-buy-wrapper {
+  @include wrapper();
+
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 30px;
+  margin-bottom: 97px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    width: 97%;
+    height: 2px;
+    background-color: $grey-color;
+  }
+}
+
+.shopping-bag-promocode-container,
+.shopping-bag-order-price-container {
+  width: 50%;
+}
+
+.shopping-bag-order-price-container {
+  text-align: right;
+}
+
+.shopping-bag-order-price-title,
+.shopping-bag-order-price-promocode,
+.shopping-bag-order-price-all-amount {
+  text-align: left;
+  font-size: $font-size-any-small;
+  line-height: $line-height-medium;
+  font-weight: $font-weight-regular;
+}
+
+.shopping-bag-promocode-title {
+  font-size: $font-size-any-small;
+  line-height: $line-height-medium;
+  font-weight: $font-weight-regular;
+}
+
+.shopping-bag-promocode-title {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.shopping-bag-promocode-input {
+  padding: 14px;
+  margin-right: 20px;
+  min-width: 278px;
+  font-family: "Roboto", "Arial", sans-serif;
+  font-size: $font-size-smallest;
+  line-height: $line-height-any-small;
+  font-weight: $font-weight-regular;
+  border: 1px solid $grey-color;
+
+  &::placeholder {
+    font-family: "Roboto", "Arial", sans-serif;
+    font-size: $font-size-smallest;
+    line-height: $line-height-any-small;
+    font-weight: $font-weight-regular;
+    color: $grey-color;
+  }
+}
+
+.shopping-bag-promocode-button,
+.shopping-bag-order-price-button {
+  font-family: "Roboto", "Arial", sans-serif;
+  font-size: $font-size-any-small;
+  line-height: $line-height-small;
+  font-weight: $font-weight-regular;
+  color: $white-color;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    opacity: 0.7;
+    transition: 0.3s ease;
+  }
+
+  &:active {
+    opacity: 0.5;
+    transition: 0.3s ease;
+  }
+}
+
+.shopping-bag-order-price-all-amount {
+  padding: 27px 0;
+}
+
+.shopping-bag-order-price-promocode,
+.shopping-bag-order-price-promocode-amount {
+  color: $orange-color;
+}
+
+.shopping-bag-promocode-button {
+  padding: 15px 45px;
+  background-color: $grey-color3;
+}
+
+.shopping-bag-order-price-button {
+  padding: 15px 27px;
+  background-color: $orange-color;
+}
+
+.shopping-bag-order-price-table {
+  min-width: 357px;
+  margin-left: auto;
+}
+
+.shopping-bag-order-price-amount {
+  text-align: right;
+}
+
+.promocode-hidden {
+  display: none;
+}

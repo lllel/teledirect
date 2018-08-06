@@ -1,0 +1,33 @@
+@import "../../../../../app/pages/app/variables";
+@import "../../../../../app/pages/app/mixins";
+
+.shopping-bag-title-container {
+  @include wrapper();
+
+  position: relative;
+  text-align: center;
+  margin-top: 58px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 51%;
+    left: 50%;
+    display: block;
+    width: 97%;
+    height: 2px;
+    transform: translateX(-50%);
+    background-color: $grey-color;
+  }
+}
+
+.shopping-bag-title {
+  position: relative;
+  display: inline;
+  padding: 0 15px;
+  font-size: $font-size-big;
+  line-height: $line-height-big;
+  font-weight: $font-weight-regular;
+  z-index: 5;
+  background-color: $white-color;
+}

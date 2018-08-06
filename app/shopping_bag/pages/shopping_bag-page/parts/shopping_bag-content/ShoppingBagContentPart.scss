@@ -1,0 +1,129 @@
+@import "../../../../../app/pages/app/variables";
+@import "../../../../../app/pages/app/mixins";
+
+.shopping-bag-wrapper {
+  @include wrapper();
+
+  margin-top: 52px;
+}
+
+.shopping-bag-table {
+  width: 100%;
+}
+
+.shopping-bag-thead-delete {
+  text-align: right;
+}
+
+.shopping-bag-thead-count,
+.shopping-bag-thead-price {
+  text-align: center;
+}
+
+.shopping-bag-thead-price {
+  padding-left: 33px;
+}
+
+.shopping-bag-table thead td {
+  padding-bottom: 37px;
+}
+
+.shopping-bag-table td {
+  padding-bottom: 24px;
+  vertical-align: top;
+}
+
+.shopping-bag-table p {
+  font-size: $font-size-any-small;
+  line-height: $line-height-medium;
+  font-weight: $font-weight-regular;
+}
+
+.shopping-bag-code {
+  font-size: $font-size-smallest;
+  line-height: $line-height-medium;
+  font-weight: $font-weight-regular;
+  color: $grey-color2;
+}
+
+.shopping-bag-img,
+.shopping-bag-price,
+.shopping-bag-delete {
+  width: 187px;
+}
+
+.shopping-bag-price {
+  padding-left: 33px;
+}
+
+.shopping-bag-price,
+.shopping-bag-count {
+  text-align: center;
+}
+
+.shopping-bag-description,
+.shopping-bag-count {
+  width: 255px;
+}
+
+.shopping-bag-product-description {
+  margin-top: 0;
+}
+
+.shopping-bag-description span {
+  display: block;
+}
+
+.shopping-bag-count button {
+  padding: 0 10px;
+  font-size: 18px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    opacity: 0.7;
+    transition: 0.3s ease;
+  }
+
+  &:active {
+    opacity: 0.5;
+    transition: 0.3s ease;
+  }
+}
+
+.shopping-bag-delete {
+  text-align: right;
+  padding-right: 20px;
+}
+
+.shopping-bag-delete button {
+  width: 19px;
+  height: 19px;
+  background-image: url('./content/img/cancel.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    opacity: 0.7;
+    transition: 0.3s ease;
+  }
+
+  &:active {
+    opacity: 0.5;
+    transition: 0.3s ease;
+  }
+}
