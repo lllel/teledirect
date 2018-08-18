@@ -1,5 +1,6 @@
 import * as React from "react";
 import './MainMenuSearchPart.scss';
+import {connect} from 'react-redux';
 import Link from "../../../../../../common/components/link/Link";
 import {InputText} from "../../../../../../common/components/input_text/InputText";
 
@@ -9,16 +10,26 @@ const shoppingBag = require('./content/img/shopping-bag.png');
 const userOutline = require('./content/img/user-outline.png');
 
 interface IProps {
-    countGoodsInShoppingBag?: string;
+    shoppingBagItems?: any;
     currentUser?: string;
 }
 
 interface IState {
 }
 
-export default class MainMenuSearchPart extends React.Component<IProps, IState> {
+class MainMenuSearchPart extends React.Component<IProps, IState> {
     constructor(props) {
         super(props);
+    }
+
+    getCountGoods() {
+        let count = 0;
+
+        this.props.shoppingBagItems.forEach((item) => {
+            count += parseInt(item.count, 10);
+        });
+
+        return count + '';
     }
 
     render() {
@@ -39,7 +50,7 @@ export default class MainMenuSearchPart extends React.Component<IProps, IState> 
                         </Link>
                         <Link className={'intro-search-shopping-bag-container'} href={'#'}>
                             <img src={shoppingBag} width="25" height="25" alt="shopping-bag"/>
-                            <p>В корзине:<span>{this.props.countGoodsInShoppingBag || 0} товар(ов)</span></p>
+                            <p>В корзине:<span>{this.getCountGoods() || 0} товар(ов)</span></p>
                         </Link>
                     </div>
                 </div>
@@ -47,3 +58,9 @@ export default class MainMenuSearchPart extends React.Component<IProps, IState> 
         );
     }
 }
+
+export default connect((store => {
+    return {
+        shoppingBagItems: store.shoppingBagItems
+    }
+}))(MainMenuSearchPart)

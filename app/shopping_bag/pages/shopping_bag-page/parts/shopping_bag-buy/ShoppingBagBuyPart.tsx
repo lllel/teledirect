@@ -1,16 +1,17 @@
 import * as React from "react";
 import './ShoppingBagBuyPart.scss';
+import {connect} from 'react-redux';
 import {InputText} from "../../../../../../common/components/input_text/InputText";
 
 interface IProps {
-    orderPrice?: string;
+    shoppingBagItems?: any;
 }
 
 interface IState {
     hasPromocode: boolean;
 }
 
-export default class ShoppingBagBuyPart extends React.Component<IProps, IState> {
+class ShoppingBagBuyPart extends React.Component<IProps, IState> {
     inputRef: InputText;
     promocode: string;
     promocodeDiscount: number;
@@ -26,6 +27,16 @@ export default class ShoppingBagBuyPart extends React.Component<IProps, IState> 
         this.promocodeDiscount = 1800;
     }
 
+    getOrderPrice() {
+        let price = 0;
+
+        this.props.shoppingBagItems.forEach((item) => {
+            price += parseInt(item.price, 10);
+        });
+
+        return price + '';
+    }
+
     onSetPromocodeClick() {
         if (this.inputRef.getValue() === this.promocode) {
             this.setState({hasPromocode: true});
@@ -37,15 +48,15 @@ export default class ShoppingBagBuyPart extends React.Component<IProps, IState> 
 
 
     calculateDiscount() {
-        if (this.state.hasPromocode && parseInt(this.props.orderPrice, 10) > this.promocodeDiscount) {
-            return parseInt(this.props.orderPrice, 10) - this.promocodeDiscount;
+        if (this.state.hasPromocode && parseInt(this.getOrderPrice(), 10) > this.promocodeDiscount) {
+            return parseInt(this.getOrderPrice(), 10) - this.promocodeDiscount;
         }
 
-        if (this.state.hasPromocode && parseInt(this.props.orderPrice, 10) <= this.promocodeDiscount) {
+        if (this.state.hasPromocode && parseInt(this.getOrderPrice(), 10) <= this.promocodeDiscount) {
             return 0;
         }
 
-        return this.props.orderPrice;
+        return this.getOrderPrice();
     }
 
     render() {
@@ -61,7 +72,7 @@ export default class ShoppingBagBuyPart extends React.Component<IProps, IState> 
                         <tbody>
                             <tr>
                                 <td className={'shopping-bag-order-price-title'}>Сумма заказа:</td>
-                                <td className={'shopping-bag-order-price-amount'}>{this.props.orderPrice} руб.</td>
+                                <td className={'shopping-bag-order-price-amount'}>{this.getOrderPrice()} руб.</td>
                             </tr>
                             <tr>
                                 <td className={`${this.state.hasPromocode ? 'shopping-bag-order-price-promocode' : 'shopping-bag-order-price-promocode promocode-hidden'}`}>Промокод:</td>
@@ -81,3 +92,9 @@ export default class ShoppingBagBuyPart extends React.Component<IProps, IState> 
         );
     }
 }
+
+export default connect((state => {
+    return {
+        shoppingBagItems: state.shoppingBagItems
+    }
+}))(ShoppingBagBuyPart);
