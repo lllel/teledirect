@@ -6,13 +6,10 @@ import {goodsInShoppingBag} from '../../../app/app/data/data';
 
 let goodsInShoppingBagCopy = JSON.parse(JSON.stringify(goodsInShoppingBag));
 
-export default function shoppingBagItem(state = goodsInShoppingBagCopy, action){
+export default function (state = goodsInShoppingBagCopy, action){
     const {type, payload} = action;
 
     switch (type) {
-        case constantsTypes.shoppingBagItems:
-            return state;
-
         case constantsTypes.shoppingBagPlus:
             return goodsInShoppingBagCopy.map((item, index) => {
                 if (item.id === payload.id) {
