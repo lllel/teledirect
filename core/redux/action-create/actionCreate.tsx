@@ -5,7 +5,8 @@ export function mapOrderPricePlus(id) {
         type: constantsTypes.shoppingBagPlus,
         payload: {
             id: id
-        }
+        },
+        randomId: true
     };
 }
 
@@ -25,4 +26,11 @@ export function mapOrderItemDelete(id) {
             id: id
         }
     };
+}
+
+export function loadRandomId() {
+    return {
+        type: constantsTypes.loadRandomId,
+        loadRandomId: true
+    }
 }

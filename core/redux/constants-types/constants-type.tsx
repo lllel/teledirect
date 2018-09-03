@@ -1,5 +1,6 @@
 export default {
     shoppingBagPlus: 'shoppingBagItemPlus',
     shoppingBagMinus: 'shoppingBagMinus',
-    shoppingBagDelete: 'shoppingBagDelete'
+    shoppingBagDelete: 'shoppingBagDelete',
+    loadRandomId: 'loadRandomId'
 };

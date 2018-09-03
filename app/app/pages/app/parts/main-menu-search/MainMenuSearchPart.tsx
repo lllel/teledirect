@@ -61,6 +61,6 @@ class MainMenuSearchPart extends React.Component<IProps, IState> {
 
 export default connect((store => {
     return {
-        shoppingBagItems: store.shoppingBagItems
+        shoppingBagItems: store.shoppingBagItems.entities
     }
 }))(MainMenuSearchPart)

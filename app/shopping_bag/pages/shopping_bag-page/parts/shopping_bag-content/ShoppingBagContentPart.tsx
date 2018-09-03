@@ -1,7 +1,9 @@
 import * as React from "react";
 import './ShoppingBagContentPart.scss';
 import {connect} from 'react-redux';
+import {mapToArr} from '../../../../../../core/helpers/helpers';
 import {
+    loadRandomId,
     mapOrderItemDelete, mapOrderPriceMinus,
     mapOrderPricePlus
 } from '../../../../../../core/redux/action-create/actionCreate';
@@ -11,6 +13,7 @@ interface IProps {
     mapOrderPricePlus?: any;
     mapOrderPriceMinus?: any;
     mapOrderItemDelete?: any;
+    loadRandomId?: any;
 }
 
 interface IState {
@@ -19,6 +22,10 @@ interface IState {
 class ShoppingBagContentPart extends React.Component<IProps, IState> {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+       this.props.loadRandomId();
     }
 
     onGoodPlusClick(id) {
@@ -95,6 +102,6 @@ class ShoppingBagContentPart extends React.Component<IProps, IState> {
 
 export default connect((store) => {
     return {
-        shoppingBagItems: store.shoppingBagItems
+        shoppingBagItems: mapToArr(store.shoppingBagItems.entities)
     };
-}, {mapOrderPricePlus, mapOrderPriceMinus, mapOrderItemDelete})(ShoppingBagContentPart);
+}, {mapOrderPricePlus, mapOrderPriceMinus, mapOrderItemDelete, loadRandomId})(ShoppingBagContentPart);

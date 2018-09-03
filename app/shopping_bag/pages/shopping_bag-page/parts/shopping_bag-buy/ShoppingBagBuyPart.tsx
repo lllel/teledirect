@@ -95,6 +95,6 @@ class ShoppingBagBuyPart extends React.Component<IProps, IState> {
 
 export default connect((state => {
     return {
-        shoppingBagItems: state.shoppingBagItems
+        shoppingBagItems: state.shoppingBagItems.entities
     }
 }))(ShoppingBagBuyPart);
