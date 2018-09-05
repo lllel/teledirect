@@ -3,7 +3,7 @@ import './ShoppingBagContentPart.scss';
 import {connect} from 'react-redux';
 import {mapToArr} from '../../../../../../core/helpers/helpers';
 import {
-    loadRandomId,
+    loadShoppingBagItems,
     mapOrderItemDelete, mapOrderPriceMinus,
     mapOrderPricePlus
 } from '../../../../../../core/redux/action-create/actionCreate';
@@ -13,7 +13,9 @@ interface IProps {
     mapOrderPricePlus?: any;
     mapOrderPriceMinus?: any;
     mapOrderItemDelete?: any;
-    loadRandomId?: any;
+    loadShoppingBagItems?: any;
+    loading?: any;
+    loaded?: any;
 }
 
 interface IState {
@@ -25,7 +27,11 @@ class ShoppingBagContentPart extends React.Component<IProps, IState> {
     }
 
     componentDidMount() {
-       this.props.loadRandomId();
+       const {loading, loaded} = this.props;
+
+       if (!loading || !loaded) {
+           this.props.loadShoppingBagItems();
+       }
     }
 
     onGoodPlusClick(id) {
@@ -62,6 +68,15 @@ class ShoppingBagContentPart extends React.Component<IProps, IState> {
     }
 
     renderGoodsInShoppingBag() {
+        if (this.props.loading) {
+            return (
+                <tr>
+                    <td className={'shopping-bag-img'}>
+                        Loading...
+                    </td>
+                </tr>
+            )}
+
         return this.props.shoppingBagItems.map((item, index) => {
            return (
                <tr key={index}>
@@ -102,6 +117,8 @@ class ShoppingBagContentPart extends React.Component<IProps, IState> {
 
 export default connect((store) => {
     return {
-        shoppingBagItems: mapToArr(store.shoppingBagItems.entities)
+        shoppingBagItems: mapToArr(store.shoppingBagItems.entities),
+        loading: store.shoppingBagItems.loading,
+        loaded: store.shoppingBagItems.loaded
     };
-}, {mapOrderPricePlus, mapOrderPriceMinus, mapOrderItemDelete, loadRandomId})(ShoppingBagContentPart);
+}, {mapOrderPricePlus, mapOrderPriceMinus, mapOrderItemDelete, loadShoppingBagItems})(ShoppingBagContentPart);

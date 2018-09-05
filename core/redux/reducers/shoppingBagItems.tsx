@@ -2,12 +2,10 @@ import constantsTypes from '../constants-types/constants-type';
 import {goodsInShoppingBag} from '../../../app/app/data/data';
 import {arrToMap} from '../../helpers/helpers';
 
-const {Record} = require('immutable');
+const {Record, OrderedMap} = require('immutable');
 
 //state - начальное состояние
 //action - как будем менять начальное состояние
-
-let goodsInShoppingBagCopy = JSON.parse(JSON.stringify(goodsInShoppingBag));
 
 const RecordState = Record({
     id: '',
@@ -23,13 +21,13 @@ const RecordState = Record({
 const RecordDefaultState = Record({
    loading: false,
    loaded: false,
-   entities: arrToMap(goodsInShoppingBagCopy, RecordState)
+   entities: new OrderedMap({})
 });
 
 const defaultState = new RecordDefaultState();
 
 export default function (state = defaultState, action){
-    const {type, payload, randomId} = action;
+    const {type, payload, randomId, shoppingBagData} = action;
 
     switch (type) {
         case constantsTypes.shoppingBagPlus:
@@ -56,6 +54,15 @@ export default function (state = defaultState, action){
 
         case constantsTypes.shoppingBagDelete:
             return state.deleteIn(['entities', payload.id]);
+
+        case constantsTypes.loadShoppingBagItems + constantsTypes.start:
+            return state.set('loading', true);
+
+        case constantsTypes.loadShoppingBagItems + constantsTypes.success:
+            return state
+                .set('entities', arrToMap(shoppingBagData, RecordState))
+                .set('loading', false)
+                .set('loaded', true);
     }
 
     return state;
