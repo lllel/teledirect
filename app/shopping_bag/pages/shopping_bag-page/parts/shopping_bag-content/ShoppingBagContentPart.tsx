@@ -29,7 +29,7 @@ class ShoppingBagContentPart extends React.Component<IProps, IState> {
     componentDidMount() {
        const {loading, loaded} = this.props;
 
-       if (!loading || !loaded) {
+       if (!loading && !loaded) {
            this.props.loadShoppingBagItems();
        }
     }

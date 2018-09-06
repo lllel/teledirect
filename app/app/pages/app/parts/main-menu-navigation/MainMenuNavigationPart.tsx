@@ -1,13 +1,13 @@
 import * as React from "react";
 import './MainMenuNavigationPart.scss';
-import Link from "../../../../../../common/components/link/Link";
+import {NavLink, Route} from 'react-router-dom';
 
 interface IProps {
     event?: (data: string) => void;
 }
 
 interface IState {
-    currentLink: string;
+    // currentLink: string;
 }
 
 export default class MainMenuNavigationPart extends React.Component<IProps, IState> {
@@ -18,7 +18,7 @@ export default class MainMenuNavigationPart extends React.Component<IProps, ISta
         super(props);
 
         this.state = {
-            currentLink: 'clothesAndAccessories'
+            // currentLink: 'clothesAndAccessories'
         };
 
         //#region navigationLinks
@@ -73,13 +73,13 @@ export default class MainMenuNavigationPart extends React.Component<IProps, ISta
     }
 
     onEvent(name) {
-        if (this.props.event) {
-            this.props.event(name);
-        }
-
-        this.setState({
-            currentLink: name
-        });
+        // if (this.props.event) {
+        //     this.props.event(name);
+        // }
+        //
+        // this.setState({
+        //     currentLink: name
+        // });
     }
 
     render() {
@@ -95,7 +95,8 @@ export default class MainMenuNavigationPart extends React.Component<IProps, ISta
                 <div className={'main-menu-rest-links'}>
                     <div className={'main-menu-rest-links-wrapper'}>
                         <ul className={'rest-links-container'}>
-                            {this.renderRestLinks()}
+                            {/*{this.renderRestLinks()}*/}
+                            {<Route path={'/clothesAndAccessories'} render={this.renderRestLinks.bind(this)}/>}
                         </ul>
                     </div>
                 </div>
@@ -107,23 +108,20 @@ export default class MainMenuNavigationPart extends React.Component<IProps, ISta
         return this.navigationLinks.map((item, index) => {
             return (
                 <li key={index} className={'navigation-link-item'}>
-                    <Link name={item.name} event={item.event} className={`navigation-link ${this.state.currentLink === item.name ? 'navigation-link-active' : ''}`}>{item.title}</Link>
+                    {/*<Link name={item.name} event={item.event} className={`navigation-link ${this.state.currentLink === item.name ? 'navigation-link-active' : ''}`}>{item.title}</Link>*/}
+                    <NavLink to={'/' + item.name} className={'navigation-link'} activeClassName={'navigation-link-active'}>{item.title}</NavLink>
                 </li>
             );
         });
     }
 
     renderRestLinks() {
-        let restLinks = this.state.currentLink === 'clothesAndAccessories' ? this.clothesAndAccessoriesLinks : null;
-
-        if (restLinks) {
-            return restLinks.map((item, index) => {
-                return (
-                    <li key={index} className={'rest-link-item'}>
-                        <Link name={item.name} className={'rest-link'}>{item.title}</Link>
-                    </li>
-                );
-            });
-        }
+        return this.clothesAndAccessoriesLinks.map((item, index) => {
+            return (
+                <li key={index} className={'rest-link-item'}>
+                    <NavLink to={'/clothesAndAccessories/' + item.name} className={'rest-link'}>{item.title}</NavLink>
+                </li>
+            );
+        });
     }
 }

@@ -1,5 +1,6 @@
 import * as React from "react";
 import './MainMenuSearchPart.scss';
+import {Link as LinkRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Link from "../../../../../../common/components/link/Link";
 import {InputText} from "../../../../../../common/components/input_text/InputText";
@@ -48,10 +49,10 @@ class MainMenuSearchPart extends React.Component<IProps, IState> {
                             <img src={userOutline} width="25" height="25" alt="user-outline"/>
                             <p>{this.props.currentUser}</p>
                         </Link>
-                        <Link className={'intro-search-shopping-bag-container'} href={'#'}>
+                        <LinkRouter className={'intro-search-shopping-bag-container'} to={'/shopping-bag'}>
                             <img src={shoppingBag} width="25" height="25" alt="shopping-bag"/>
                             <p>В корзине:<span>{this.getCountGoods() || 0} товар(ов)</span></p>
-                        </Link>
+                        </LinkRouter>
                     </div>
                 </div>
             </div>

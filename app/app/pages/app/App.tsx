@@ -1,5 +1,6 @@
 import * as React from "react";
 import "./App.scss";
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import MainMenuNavigationPart from "./parts/main-menu-navigation/MainMenuNavigationPart";
 import MainMenuIntroPart from "./parts/main-menu-intro/MainMenuIntroPart";
 import MainMenuSearchPart from "./parts/main-menu-search/MainMenuSearchPart";
@@ -11,7 +12,6 @@ interface IProps {
 
 interface IState {
     currentPage: string;
-    countGoodsInShoppingBag: string;
     currentUser: string;
 }
 
@@ -21,7 +21,6 @@ export default class App extends React.Component<IProps, IState> {
 
         this.state = {
             currentPage: "clothesAndAccessories",
-            countGoodsInShoppingBag: '0',
             currentUser: 'Анастасия'
         };
     }
@@ -32,23 +31,30 @@ export default class App extends React.Component<IProps, IState> {
         });
     }
 
-    onSetCountGoodsInShoppingBag(count) {
-        this.setState({countGoodsInShoppingBag: count});
+    showNotFound() {
+        return <h2>Not Found!</h2>
     }
 
     render() {
         return (
-            <div className={'app'}>
-                <div className={'sticky-footer'}>
-                    <div className={'main-menu-container'}>
-                        <MainMenuIntroPart/>
-                        <MainMenuSearchPart currentUser={this.state.currentUser} countGoodsInShoppingBag={this.state.countGoodsInShoppingBag}/>
-                        <MainMenuNavigationPart event={this.onEvent.bind(this)}/>
+            <Router>
+                <div className={'app'}>
+                    <div className={'sticky-footer'}>
+                        <div className={'main-menu-container'}>
+                            <MainMenuIntroPart/>
+                            <MainMenuSearchPart currentUser={this.state.currentUser} />
+                            <MainMenuNavigationPart event={this.onEvent.bind(this)}/>
+                        </div>
+                        {/*{this.state.currentPage === 'clothesAndAccessories' ? <Route path={'/shopping-bag'} component={ShoppingBagPage}/> : null}*/}
+                        <Switch>
+                            <Route path={'/shopping-bag'} component={ShoppingBagPage} exact={true}/>
+                            <Route path={'*'} render={this.showNotFound.bind(this)}/>
+                        </Switch>
                     </div>
-                    {this.state.currentPage === 'clothesAndAccessories' ? <ShoppingBagPage onSetCountGoodsInShoppingBag={this.onSetCountGoodsInShoppingBag.bind(this)}/> : null}
+                    <MainFooterPart/>
                 </div>
-                <MainFooterPart/>
-            </div>
+
+            </Router>
         );
     }
 }
