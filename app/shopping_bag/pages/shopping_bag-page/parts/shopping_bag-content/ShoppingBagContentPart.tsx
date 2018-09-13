@@ -103,11 +103,6 @@ class ShoppingBagContentPart extends React.Component<IProps, IState> {
     }
 }
 
-// connect - метод через который можно достать что то из store
-// mapOrderPriceFromStore - возвращает то, что нужно достать из store (в объекте пропсы)
-// mapOrderPrice - передаётся вторым аргументом в connect, поэтому автоматически попадает в dispatch (this.props.dispatch({price: getOrderPrice()})). {getOrderPrice} вместо getOrderPrice потому что нужно передать объект, типа {orderPrice: getOrderPrice}. Деструктуризация
-// price - текущий state из store
-
 // function mapOrderPriceFromStore(store) {
 //     return {
 //       price: store.orderPrice,

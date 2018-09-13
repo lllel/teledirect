@@ -4,9 +4,6 @@ import {arrToMap} from '../../helpers/helpers';
 
 const {Record, OrderedMap} = require('immutable');
 
-//state - начальное состояние
-//action - как будем менять начальное состояние
-
 const RecordState = Record({
     id: '',
     code: '',

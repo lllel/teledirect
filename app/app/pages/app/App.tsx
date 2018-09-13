@@ -11,7 +11,6 @@ interface IProps {
 }
 
 interface IState {
-    currentPage: string;
     currentUser: string;
 }
 
@@ -20,15 +19,8 @@ export default class App extends React.Component<IProps, IState> {
         super(props);
 
         this.state = {
-            currentPage: "clothesAndAccessories",
             currentUser: 'Анастасия'
         };
-    }
-
-    onEvent(name) {
-        this.setState({
-            currentPage: name
-        });
     }
 
     showNotFound() {
@@ -43,7 +35,7 @@ export default class App extends React.Component<IProps, IState> {
                         <div className={'main-menu-container'}>
                             <MainMenuIntroPart/>
                             <MainMenuSearchPart currentUser={this.state.currentUser} />
-                            <MainMenuNavigationPart event={this.onEvent.bind(this)}/>
+                            <MainMenuNavigationPart/>
                         </div>
                         {/*{this.state.currentPage === 'clothesAndAccessories' ? <Route path={'/shopping-bag'} component={ShoppingBagPage}/> : null}*/}
                         <Switch>
@@ -53,7 +45,6 @@ export default class App extends React.Component<IProps, IState> {
                     </div>
                     <MainFooterPart/>
                 </div>
-
             </Router>
         );
     }
