@@ -5,5 +5,6 @@ export default {
     loadShoppingBagItems: 'loadShoppingBagItems',
     start: '_start',
     success: '_success',
-    fail: '_fail'
+    fail: '_fail',
+    currentUser: 'currentUser'
 };

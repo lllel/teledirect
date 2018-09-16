@@ -8,14 +8,19 @@
     "build": "webpack --config internals/webpack/webpack.dev.config.js --progress --profile --colors",
     "prod": "webpack --config internals/webpack/webpack.prod.config.js --progress --profile --colors"
   },
-  "author": "Shell",
+  "author": "Shel",
   "license": "",
   "dependencies": {
+    "@types/history": "^4.7.0",
+    "@types/react-router-dom": "^4.3.1",
+    "@types/react-router-redux": "^5.0.16",
+    "history": "^4.7.2",
     "immutable": "^3.8.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
+    "react-router-redux": "^4.0.8",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {

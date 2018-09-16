@@ -1,9 +1,12 @@
 import constantsTypes from '../constants-types/constants-type';
 import {goodsInShoppingBag} from '../../../app/app/data/data';
+import history from '../history/history';
 
 let goodsInShoppingBagCopy = JSON.parse(JSON.stringify(goodsInShoppingBag));
 
 export function mapOrderPricePlus(id) {
+    history.push('/footwear');
+
     return {
         type: constantsTypes.shoppingBagPlus,
         payload: {
@@ -27,6 +30,15 @@ export function mapOrderItemDelete(id) {
         type: constantsTypes.shoppingBagDelete,
         payload: {
             id: id
+        }
+    };
+}
+
+export function changeCurrentUser(user) {
+    return {
+        type: constantsTypes.currentUser,
+        payload: {
+            user: user
         }
     };
 }

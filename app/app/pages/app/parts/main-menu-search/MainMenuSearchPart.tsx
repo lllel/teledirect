@@ -12,7 +12,7 @@ const userOutline = require('./content/img/user-outline.png');
 
 interface IProps {
     shoppingBagItems?: any;
-    currentUser?: string;
+    currentUser: string;
 }
 
 interface IState {
@@ -62,6 +62,7 @@ class MainMenuSearchPart extends React.Component<IProps, IState> {
 
 export default connect((store => {
     return {
-        shoppingBagItems: store.shoppingBagItems.entities
+        shoppingBagItems: store.shoppingBagItems.entities,
+        currentUser: store.currentUser
     }
 }))(MainMenuSearchPart)

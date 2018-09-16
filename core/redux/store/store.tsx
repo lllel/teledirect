@@ -1,5 +1,7 @@
 import {createStore, applyMiddleware} from "redux";
 import thunk from 'redux-thunk';
+// import {routerMiddleware} from 'react-router-redux';
+// import history from '../history/history';
 import combineReducer from '../reducers/_index';
 import randomId from '../middlewares/randomId';
 // import loadShoppingBagItems from '../middlewares/loadShoppingBagItems';
